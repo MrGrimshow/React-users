@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 function UserForm(props) {
   const [name, setName] = useState("");
@@ -12,24 +13,19 @@ function UserForm(props) {
     //prevents the page from refreshing when form is submitted
     e.preventDefault();
 
-    //object with the new user
-    let user = {
-      name: name,
-      email: email,
-      male: male,
-      female: female,
-      others: others
-    };
+    if (email && name) {
+      let newUser = {
+        name: name,
+        email: email,
+        //adds a unique id to the new user
+        id: uuid(),
+      };
 
-    //calls the addUser function in App.js
-    props.addUser(user);
+      props.addUser(newUser);
 
-    //sets name, email state to empty strings
-    setName("");
-    setEmail("");
-    setMale("");
-    setFemale("");
-    setOthers("");
+      setName("");
+      setEmail("");
+    }
   }
 
   return (
