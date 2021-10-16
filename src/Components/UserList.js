@@ -1,6 +1,5 @@
-import React, { useState } from "react";
 import User from "./User";
-import { Modal, Button } from "react-bootstrap";
+
 
 function UserList(props) {
   return (
@@ -19,5 +18,6 @@ function UserList(props) {
     </div>
   );
 }
+
 
 export default UserList;
