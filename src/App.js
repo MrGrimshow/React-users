@@ -2,6 +2,8 @@ import './App.css';
 import React, { useState } from "react";
 import UserForm from "./Components/UserForm";
 import UserList from "./Components/UserList";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Container, Row, Col } from "react-bootstrap";
 
 function App() {
   //users state array
@@ -42,10 +44,17 @@ function App() {
   }
 
   return (
-    <div>
-      <UserForm addUser={addUser} />
-      <UserList users={users} deleteUser={deleteUser} editUser={editUser} />
-    </div>
+    <Container fluid style={{ marginTop: "5 rem" }}>
+      <Row>
+        <Col md="5">
+          <UserForm />
+        </Col>
+
+        <Col md="5 ">
+          <UserList deleteUser={deleteUser} editUser={editUser} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

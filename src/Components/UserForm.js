@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
+import { Col, ListGroup } from "react-bootstrap";
+import { addUser } from "../actions/userActions";
+import { connect } from "react-redux";
 
 function UserForm(props) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [male, setMale] =useState("");
-  const [female, setFemale] =useState("");
-  const [others, setOthers] =useState("");
+  const [gen, setGen] =useState("");
+  
 
 
   function handleSubmit(e) {
@@ -17,63 +19,73 @@ function UserForm(props) {
       let newUser = {
         name: name,
         email: email,
+        gen: gen,
         //adds a unique id to the new user
         id: uuid(),
       };
 
-      props.addUser(newUser);
+      props.addNewUser(newUser);
 
       setName("");
       setEmail("");
+      setGen("");
     }
   }
 
   return (
+    <Col md="4" style={{ marginBottom: "1rem" }}>
     <form onSubmit={(e) => handleSubmit(e)}>
+    <label>Fullname</label>
       <input
         type="text"
         name="fullname"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <label>Fullname</label>
-
+      
+      <br></br>
+      <label>Email</label>
       <input
         type="email"
         name="email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <label>Email</label>
+      
       <br/>
-
+      <label>Gen</label>
       <input
-        type="radio"
-        name="male"
-        value={male}
-        onChange={(e) => setMale(e.target.value)} 
+        type="number"
+        name="Gen"
+        value={gen}
+        onChange={(e) => setGen(e.target.value)} 
       />
-      <label>Male</label>
-
+      
+      {/* <label>Female</label> 
     <input
         type="radio"
         name="female"
         value={female}
         onChange={(e) => setFemale(e.target.value)} 
       />  
-      <label>Female</label>  
-
+       
+       <label>Other</label>
     <input
         type="radio"
         name="others"
         value={others}
         onChange={(e) => setOthers(e.target.value)} 
-      />
-      <label>Female</label>
+      /> */}
+     
       
       <input type="submit" />
     </form>
+    </Col>
   );
 }
 
-export default UserForm;
+const mapDispatchToProps = {
+  addNewUser: addUser,
+};
+
+export default connect(null, mapDispatchToProps)(UserForm);

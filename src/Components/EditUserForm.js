@@ -4,6 +4,7 @@ import { Form, Button } from "react-bootstrap";
 export default function EditUserForm(props) {
   const [name, setName] = useState(props.user.name);
   const [email, setEmail] = useState(props.user.email);
+  const [gen, setGen] =useState(props.user.gen)
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -13,11 +14,16 @@ export default function EditUserForm(props) {
     setEmail(e.target.value);
   };
 
+  const handleGenChange = (e) => {
+    setGen(e.target.value);
+  };
+
   function handleSubmit() {
     //combines the new user details
     let editedUser = {
       name: name,
       email: email,
+      gen: gen,
       id: props.user.id,
     };
 
@@ -46,8 +52,21 @@ export default function EditUserForm(props) {
           value={email}
           onChange={(e) => handleEmailChange(e)}
         />
+        </Form.Group>
+
+      <Form.Group className="mb-3" controlId="formBasicPassword">
+        <Form.Label>Gen</Form.Label>
+        <Form.Control
+          type="number"
+          placeholder="Enter number"
+          value={gen}
+          onChange={(e) => handleGenChange(e)}
+        />
+        </Form.Group>
+
+        
         <Button onClick={() => handleSubmit()}>Save</Button>
-      </Form.Group>
+      
     </Form>
   );
 }

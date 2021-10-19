@@ -20,6 +20,7 @@ function User(props) {
     <div>
       <h1>{user.name}</h1>
       <h3>{user.email}</h3>
+      <h4>{user.gen}</h4>
       <Button variant="primary" onClick={() => toggleModal()}>
         Edit
       </Button>
@@ -30,7 +31,7 @@ function User(props) {
       {/*Modal to edit user*/}
       <Modal show={showModal} onHide={() => toggleModal()}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Edit Page</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {/*Component to edit user*/}
