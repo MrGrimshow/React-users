@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import {connect} from 'react-redux'
+import {editUser} from "../actions/userActions"
 
-export default function EditUserForm(props) {
+function EditUserForm(props) {
   const [name, setName] = useState(props.user.name);
   const [email, setEmail] = useState(props.user.email);
   const [gen, setGen] =useState(props.user.gen)
@@ -28,7 +30,7 @@ export default function EditUserForm(props) {
     };
 
     //calls the edit User function and closes the modal
-    props.editUser(editedUser, props.user.id);
+    props.editUser(props.user.id ,editedUser );
     props.toggleModal();
   }
 
@@ -70,3 +72,9 @@ export default function EditUserForm(props) {
     </Form>
   );
 }
+
+const mapDispatchToProps = {
+  editUser
+}
+
+export default connect(null, mapDispatchToProps)(EditUserForm);
