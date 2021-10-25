@@ -2,8 +2,8 @@
 
 const initialState = {
     users: [
-      { name: "herbert", email: "wtehqj@gmail.com", gen: 3 },
-      { name: "vida", email: "wtehqooooj@gmail.com", gen: 17 },
+      // { name: "herbert", email: "wtehqj@gmail.com", gen: 3 },
+      // { name: "vida", email: "wtehqooooj@gmail.com", gen: 17 },
     ],
   };
   
