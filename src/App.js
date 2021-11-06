@@ -1,13 +1,19 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserForm from "./Components/UserForm";
 import UserList from "./Components/UserList";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Container, Row, Col } from "react-bootstrap";
+import {connect} from "react-redux"
+import { getAllUsers} from "./actions/userActions"
 
-function App() {
+function App(props) {
+  
   //users state array
   const [users, setUsers] = useState([]);
+  useEffect(()=>{
+    props.getAllUsers();
+  },[]);
 
   //function to add a new user
   function addUser(user) {
@@ -57,5 +63,8 @@ function App() {
     </Container>
   );
 }
+const mapDispatchToProps = {
+	getAllUsers
+};
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);
